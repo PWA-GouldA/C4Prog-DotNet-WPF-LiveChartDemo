@@ -1,9 +1,7 @@
 ﻿using LiveCharts;
-using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace WPF_With_LiveCharts
 {
@@ -12,19 +10,25 @@ namespace WPF_With_LiveCharts
     /// </summary>
     public partial class MainWindow : Window
     {
-        public SeriesCollection theData;
+        public SeriesCollection theData1;
         public SeriesCollection theData2;
+        public SeriesCollection theData3;
         public string BackgroundColour;
+        private CountdownTicker timer;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            theData = new SeriesCollection
+            theData1 = new SeriesCollection
             {
                 new LineSeries
                 {
-                    Values = new ChartValues<decimal> { 7, 3, 2, 3, 5, 7, 4 }
+                    Values = new ChartValues<double> { 3, 5, 7, 4 }
+                },
+                new LineSeries
+                {
+                    Values = new ChartValues<decimal> { 5, 6, 2, 7 }
                 }
             };
 
@@ -36,9 +40,25 @@ namespace WPF_With_LiveCharts
                 }
             };
 
-            BackgroundColour = "#FFCE2156";
 
-            DataContext = this;
+            theData3 = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Values = new ChartValues<decimal> { 100, 50, 70, 20, 30 }
+                }
+            };
+
+            this.BackgroundColour = "#FF000000";
+
+            timer = new CountdownTicker();
+
+            timer.Start();
+
+            TestingCardLineChart1.SeriesData = theData1;
+            TestingCardLineChart2.SeriesData = theData2;
+            TestingCardLineChart3.SeriesData = theData3;
+
 
         }
 
@@ -46,5 +66,8 @@ namespace WPF_With_LiveCharts
         {
 
         }
+
+
+
     }
 }

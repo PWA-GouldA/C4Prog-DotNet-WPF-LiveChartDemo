@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
+using OxyPlot;
+using LiveCharts;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using LiveCharts;
-using LiveCharts.Defaults;
-using LiveCharts.Wpf;
 
 namespace WPF_With_LiveCharts
 {
@@ -29,46 +18,48 @@ namespace WPF_With_LiveCharts
             CardGrid.DataContext = this;
         }
 
-        #region SeriesData DP
+
+        /// <summary>
+        /// Series Data Property for Card Chart
+        /// </summary>
         public SeriesCollection SeriesData
         {
-            set { SetValue(DataProperty, value); }
+            get { return null; }
+            set { SetValue(SeriesDataProperty, value); }
         }
-        public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("SeriesData", 
-                typeof(SeriesCollection), typeof(CardLineChart), 
-                new PropertyMetadata(new SeriesCollection()));
-        #endregion
 
-        #region BackgroundColour DP
+        public static readonly DependencyProperty SeriesDataProperty =
+            DependencyProperty.Register("SeriesData",
+                typeof(SeriesCollection), typeof(CardLineChart),
+                new PropertyMetadata(new SeriesCollection()));
+
+
         public string BackgroundColour
         {
             set { SetValue(ColourBG, value); }
         }
         public static readonly DependencyProperty ColourBG =
             DependencyProperty.Register("BackgroundColour",
-                typeof(string), typeof(CardLineChart), new PropertyMetadata(""));
-        #endregion
+                typeof(string), typeof(CardLineChart), new PropertyMetadata(null));
 
-        #region BottomLabel DP
-        public string BottomLabel
+        public string CardContent
         {
             set { SetValue(LabelAtBottom, value); }
         }
         public static readonly DependencyProperty LabelAtBottom =
-            DependencyProperty.Register("BottomLabel",
+            DependencyProperty.Register("CardContent",
                 typeof(string), typeof(CardLineChart), new PropertyMetadata(null));
-        #endregion
 
-        #region TopLabel DP
-        public string TopLabel
+
+        public string CardTitle
         {
             set { SetValue(LabelAtTop, value); }
         }
         public static readonly DependencyProperty LabelAtTop =
-            DependencyProperty.Register("TopLabel",
+            DependencyProperty.Register("CardTitle",
                 typeof(string), typeof(CardLineChart), new PropertyMetadata(null));
-        #endregion
+
+
     }
 
 

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:oxy="http://oxyplot.org/wpf"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="200"
              >
@@ -28,16 +29,24 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="80*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Border x:Name="Border1" Grid.Row="0" Grid.RowSpan="3" CornerRadius="5" 
                 Background="{Binding Path=BackgroundColour}" />
-        <TextBlock Grid.Row="0" TextAlignment="Center" Padding="5, 5, 0, 5" 
-                   Foreground="#ccFFFFFF" FontSize="12"
-                   Text="{Binding Path=TopLabel}" />
+
+        <Label Grid.Row="0"
+               x:Name="CardTitleLabel"
+               Foreground="#ccFFFFFF" FontSize="12"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center"
+               Content="{Binding Path=CardTitle}" />
+
         <lvc:CartesianChart Grid.Row="1" 
+                            x:Name="CardChart"
                             Margin="0,0,0,0" 
                             Series="{Binding Path=SeriesData}" 
                             Hoverable="False" 
@@ -46,9 +55,15 @@
                 <lvc:Axis MinValue="0"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
         </lvc:CartesianChart>
-        <TextBlock Grid.Row="2" x:Name="ChartValue" 
-                   Foreground="#ccFFFFFF" FontSize="48" 
-                   VerticalAlignment="Center" TextAlignment="Center" 
-                   Margin="8,0,8,6" Text="{Binding Path=BottomLabel}"/>
+
+
+            <Label Grid.Row="2" 
+               x:Name="CardValueLabel" 
+               Foreground="#ccFFFFFF" FontSize="48" 
+               VerticalAlignment="Center" 
+               HorizontalAlignment="Center" 
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center"
+               Content="{Binding Path=CardContent}" />
     </Grid>
 </UserControl>
